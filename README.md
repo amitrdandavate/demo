@@ -1,1 +1,1 @@
-This is sample demo project. Modified, again, on new branch
+This is good project. Modified, again, on new branch
