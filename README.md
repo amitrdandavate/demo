@@ -38,13 +38,16 @@ e.g. cd_ks_iso_path - this contains to reference other variable like customer.pr
 
 e.g. Run sequence
 1. Update hosts file
-2. Run playbook
+2. Run playbook. When password prompted, provide ansible user password.
+
 ```
    ansible-playbook -k -i hosts  deploy.yml --extra-vars "vm_name=mdrrlyh01"
+   SSH password:
 ```
    Watch the progress of VM in vSphere Client. Once the VM with OS is deployed run below playbook to run post deploy configurations.
 ```
    ansible-playbook -k -i deployed_hosts  roles/provision_vm/tasks/post_vm_deploy.yml
+   SSH password:
 ```
 
 ## License
