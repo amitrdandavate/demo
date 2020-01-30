@@ -5,16 +5,21 @@ Description - This role helps to deploy the new virtual machine using CentOS-7-x
 
 ## Requirements
 
-1. ansible 2.9.2
-      config file = /etc/ansible/ansible.cfg
-      configured module search path = [u'/root/.ansible/plugins/modules', u'/usr/share/ansible/plugins/modules']
-      ansible python module location = /usr/lib/python2.7/site-packages/ansible
-      executable location = /usr/bin/ansible
-      python version = 2.7.5 (default, Apr  9 2019, 14:30:50) [GCC 4.8.5 20150623 (Red Hat 4.8.5-36)]
-
+1. Ansible 
+```
+ansible 2.9.2
+  config file = /etc/ansible/ansible.cfg
+  configured module search path = [u'/root/.ansible/plugins/modules', u'/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/lib/python2.7/site-packages/ansible
+  executable location = /usr/bin/ansible
+  python version = 2.7.5 (default, Apr  9 2019, 14:30:50) [GCC 4.8.5 20150623 (Red Hat 4.8.5-36)]
+```
 2. Python modules
+```
     pycdlib-1.9.0.tar.gz
-    pyvmomi
+    pyvmomi 6.7.1
+```
+3. Download the hardening rpm [csco-cms-hardening-1.0.0-1.0.noarch.rpm] from artifactory and put inside qs yum repo. [e.g. http://REPOURL/sapphire/]
 
 ## Role Variables
 
@@ -34,10 +39,10 @@ Module dependencies listed above in the requirements section.
 ## Example Playbook
 
 **Sequence of Playbooks to run**
-    tasks/main.yml - will run
-        - build_dependencies.yml
-        - provision_vm.yml
-    tasks/post_vm_deploy.yml
+- tasks/main.yml - will run
+    - build_dependencies.yml
+    - provision_vm.yml
+- tasks/post_vm_deploy.yml
 
 e.g. Run sequence
 1. Update hosts file
