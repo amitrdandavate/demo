@@ -1,7 +1,7 @@
 # Secure Build Via ISO
 
 ## Role Name - provision_vm
-Description - This role help to deploy the new virtual machine using CentOS-7-x86_64-DVD-1908.iso file. Post deployment of VM additional configurations are also performed. The deployed VM is then hardened.
+Description - This role helps to deploy the new virtual machine using CentOS-7-x86_64-DVD-1908.iso file. Post deployment of VM additional configurations are also performed and the deployed VM is then hardened.
 
 ## Requirements
 
@@ -21,31 +21,36 @@ Description - This role help to deploy the new virtual machine using CentOS-7-x8
 The variables are declared in below file - vars/main.yml
 
 All the variables are configurable except the one which refers to the value of another variable. Not recommended to remove sub-variables from the same. 
-e.g. cd_ks_iso_path - this contains to reference other variable like customer.prefix
+e.g. cd_ks_iso_path - this contains a reference to other variable like customer.prefix
+```
+cd_ks_iso_path: "[datastoresas] ISO/{{ customer.prefix }}_kickstart.iso"
+```
 
 ## Dependencies
 
-    Module dependencies listed above in the requirements section.
+Module dependencies listed above in the requirements section.
 
 
 ## Example Playbook
 
 **Sequence of Playbooks to run**
-  tasks/main.yml - will run
-    - build_dependencies.yml
-    - provision_vm.yml
-  tasks/post_vm_deploy.yml
+    tasks/main.yml - will run
+        - build_dependencies.yml
+        - provision_vm.yml
+    tasks/post_vm_deploy.yml
 
 e.g. Run sequence
 1. Update hosts file
 2. Run playbook. When password prompted, provide ansible user password.
 
 ```
-   ansible-playbook -k -i hosts  deploy.yml --extra-vars "vm_name=mdrrlyh01"
+   e.g.
+   $ ansible-playbook -k -i hosts  deploy.yml --extra-vars "vm_name=mdrrlyh01"
    SSH password:
 ```
    Watch the progress of VM in vSphere Client. Once the VM with OS is deployed run below playbook to run post deploy configurations.
 ```
+   e.g.
    ansible-playbook -k -i deployed_hosts  roles/provision_vm/tasks/post_vm_deploy.yml
    SSH password:
 ```
