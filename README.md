@@ -1,4 +1,4 @@
-# Secure Build Via ISO
+# Secure Build via ISO
 
 ## Role Name - provision_vm
 Description - This role helps to deploy the new virtual machine using CentOS-7-x86_64-DVD-1908.iso file. Post deployment of VM additional configurations are also performed and the deployed VM is then hardened.
@@ -45,7 +45,10 @@ Module dependencies listed above in the requirements section.
 - tasks/post_vm_deploy.yml
 
 e.g. Run sequence
-1. Update hosts file
+1. Update hosts, deployed_hosts file. 
+[ansible_srv] - For Ansible server host
+[deployed_host] - For VM to deploy/deployed host
+
 2. Run playbook. When password prompted, provide ansible user password.
 
 ```
